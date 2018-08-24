@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,11 +19,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="RCx-RW-UVG">
-                                <rect key="frame" x="16" y="80" width="343" height="80.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="RCx-RW-UVG">
+                                <rect key="frame" x="16" y="80" width="343" height="533.5"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="doj-aC-6iK">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="80.5"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="doj-aC-6iK">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="533.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meal Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l8c-63-VhZ">
                                                 <rect key="frame" x="0.0" y="0.0" width="86.5" height="20.5"/>
@@ -43,6 +44,19 @@
                                                     <action selector="setDefaultLabelText:" destination="BYZ-38-t0r" eventType="touchUpInside" id="I4a-er-WcT"/>
                                                 </connections>
                                             </button>
+                                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="qDL-ZP-J6n">
+                                                <rect key="frame" x="0.0" y="80.5" width="343" height="343"/>
+                                                <gestureRecognizers/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="qDL-ZP-J6n" secondAttribute="height" multiplier="1:1" id="cDh-zT-cnS"/>
+                                                </constraints>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="Y0K-U4-yTZ" appends="YES" id="6Aq-Cw-wux"/>
+                                                </connections>
+                                            </imageView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dyr-St-F8a" customClass="RatingControl">
+                                                <rect key="frame" x="0.0" y="423.5" width="200" height="110"/>
+                                            </stackView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="vPt-Hb-5qv" firstAttribute="top" secondItem="l8c-63-VhZ" secondAttribute="bottom" constant="12" id="HCk-uV-asO"/>
@@ -64,11 +78,20 @@
                     <connections>
                         <outlet property="mealNameLabel" destination="l8c-63-VhZ" id="Iyz-gy-NFl"/>
                         <outlet property="nameTextField" destination="vPt-Hb-5qv" id="ndV-4t-STB"/>
+                        <outlet property="photoImageView" destination="qDL-ZP-J6n" id="oml-uw-hmi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Y0K-U4-yTZ">
+                    <connections>
+                        <action selector="selectImageFromPhotoLibrary:" destination="BYZ-38-t0r" id="Gn5-La-GEO"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="4" y="60.719640179910051"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="defaultPhoto" width="540" height="540"/>
+    </resources>
 </document>
